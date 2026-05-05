@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Projeto Figma</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navegação Responsiva -->
+    <nav class="navbar">
+        <div class="logo">Meu App</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('sobre')">Sobre</a></li>
+            <li><a href="#" onclick="showPage('contato')">Contato</a></li>
+        </ul>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <main id="content">
+        <!-- Página Home -->
+        <section id="home" class="page active">
+            <h1>Bem-vindo à Home</h1>
+            <p>Este layout foi baseado no seu protótipo do Figma.</p>
+        </section>
+
+        <!-- Página Sobre -->
+        <section id="sobre" class="page">
+            <h1>Sobre o Projeto</h1>
+            <p>Detalhes da segunda tela aqui.</p>
+        </section>
+
+        <!-- Página Contato -->
+        <section id="contato" class="page">
+            <h1>Contato</h1>
+            <p>Formulário ou informações de contato.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
 

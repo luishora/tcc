@@ -1,1 +1,34 @@
+/* Reset básico */
+* { margin: 0; padding: 0; box-box: border-box; font-family: sans-serif; }
+
+/* Estilo da Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #333;
+    color: white;
+}
+
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: white; text-decoration: none; cursor: pointer; }
+
+.menu-toggle { display: none; background: none; border: none; color: white; font-size: 24px; }
+
+/* Controle de Páginas */
+.page { display: none; padding: 50px; text-align: center; }
+.page.active { display: block; }
+
+/* RESPONSIVIDADE (Celular) */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Esconde o menu no celular */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; left: 0; width: 100%;
+        background: #444; padding: 20px;
+    }
+    .nav-links.show { display: flex; }
+    .menu-toggle { display: block; } /* Mostra o botão hambúrguer */
+}
 
