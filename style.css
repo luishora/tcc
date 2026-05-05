@@ -1,34 +1,25 @@
-/* Reset básico */
-* { margin: 0; padding: 0; box-box: border-box; font-family: sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
-/* Estilo da Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: #333;
-    color: white;
+/* MOBILE FIRST (Padrão Celular) */
+.header-container { display: flex; flex-direction: column; align-items: center; padding: 20px; gap: 15px; }
+.app-name { display: none; } /* Esconde o nome no mobile conforme pedido */
+
+.carousel { position: relative; height: 250px; background: #eee; display: flex; align-items: center; justify-content: center; }
+.slide { display: none; font-size: 24px; font-weight: bold; color: #555; }
+.slide.active { display: block; }
+
+.stats { padding: 40px; text-align: center; background: #007bff; color: white; }
+.counter { font-size: 48px; font-weight: bold; }
+
+/* MODAL */
+.modal { display: none; position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
+.modal-content { background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; }
+.modal-content input { width: 100%; padding: 10px; margin: 10px 0; }
+
+/* DESKTOP / TABLET */
+@media (min-width: 768px) {
+    .header-container { flex-direction: row; justify-content: space-between; padding: 10px 50px; }
+    .app-name { display: block; }
+    .logo { order: -1; }
+    .nav-menu { order: 1; }
 }
-
-.nav-links { display: flex; list-style: none; gap: 20px; }
-.nav-links a { color: white; text-decoration: none; cursor: pointer; }
-
-.menu-toggle { display: none; background: none; border: none; color: white; font-size: 24px; }
-
-/* Controle de Páginas */
-.page { display: none; padding: 50px; text-align: center; }
-.page.active { display: block; }
-
-/* RESPONSIVIDADE (Celular) */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Esconde o menu no celular */
-        flex-direction: column;
-        position: absolute;
-        top: 60px; left: 0; width: 100%;
-        background: #444; padding: 20px;
-    }
-    .nav-links.show { display: flex; }
-    .menu-toggle { display: block; } /* Mostra o botão hambúrguer */
-}
-

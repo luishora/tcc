@@ -3,43 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Projeto Figma</title>
+    <title>Stock Flow - Gestão Inteligente</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Maps API ou Embed -->
 </head>
 <body>
 
-    <!-- Navegação Responsiva -->
-    <nav class="navbar">
-        <div class="logo">Meu App</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#" onclick="showPage('home')">Home</a></li>
-            <li><a href="#" onclick="showPage('sobre')">Sobre</a></li>
-            <li><a href="#" onclick="showPage('contato')">Contato</a></li>
-        </ul>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    </nav>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo"><img src="logo.png" alt="Stock Flow"></div>
+            <h1 class="app-name">Stock Flow</h1>
+            <nav class="nav-menu">
+                <button id="loginBtn" class="btn-login">Login</button>
+            </nav>
+        </div>
+    </header>
 
-    <main id="content">
-        <!-- Página Home -->
-        <section id="home" class="page active">
-            <h1>Bem-vindo à Home</h1>
-            <p>Este layout foi baseado no seu protótipo do Figma.</p>
+    <main>
+        <!-- Carrossel Moderno -->
+        <section class="carousel">
+            <div class="carousel-container">
+                <div class="slide active">Slide Anúncio 1</div>
+                <div class="slide">Slide Anúncio 2</div>
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </section>
 
-        <!-- Página Sobre -->
-        <section id="sobre" class="page">
-            <h1>Sobre o Projeto</h1>
-            <p>Detalhes da segunda tela aqui.</p>
+        <!-- Gráfico Animado -->
+        <section class="stats">
+            <h2>Clientes Alcançados</h2>
+            <div class="counter" id="clientCounter">0</div>
         </section>
 
-        <!-- Página Contato -->
-        <section id="contato" class="page">
-            <h1>Contato</h1>
-            <p>Formulário ou informações de contato.</p>
+        <!-- Empresas Parceiras -->
+        <section class="partners">
+            <h3>Empresas que confiam</h3>
+            <div class="logos-grid">
+                <div class="partner-logo">Logo 1</div>
+                <div class="partner-logo">Logo 2</div>
+            </div>
+        </section>
+
+        <!-- Localização -->
+        <section class="location">
+            <h3>Onde Estamos</h3>
+            <iframe src="https://google.com" width="100%" height="300" style="border:0;" allowfullscreen=""></iframe>
+        </section>
+
+        <!-- Fale Conosco -->
+        <section class="contact">
+            <h3>Fale Conosco</h3>
+            <form>
+                <input type="text" placeholder="Nome">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Mensagem"></textarea>
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </main>
+
+    <footer>
+        <img src="logo.png" alt="Stock Flow" width="50">
+        <p>Stock Flow &copy; 2024 - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- MODAL DE LOGIN -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div id="loginForm">
+                <h2>Login</h2>
+                <input type="text" id="user" placeholder="Usuário">
+                <input type="password" id="pass" placeholder="Senha">
+                <button onclick="handleLogin()">Entrar</button>
+                <p><a href="#" onclick="toggleAuth('forgot')">Esqueci a senha</a></p>
+                <p><a href="cadastro.html">Novo Cadastro</a></p>
+            </div>
+
+            <div id="forgotForm" style="display:none;">
+                <h2>Recuperar Senha</h2>
+                <input type="email" placeholder="Seu E-mail">
+                <button>Enviar Link</button>
+                <p><a href="#" onclick="toggleAuth('login')">Voltar ao Login</a></p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
