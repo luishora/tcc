@@ -1,46 +1,146 @@
-// Modal Toggle
-const modal = document.getElementById('loginModal');
-const loginBtn = document.getElementById('loginBtn');
+// DADOS DO ESTOQUE
 
-loginBtn.onclick = () => modal.style.display = "flex";
-window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+const estoque = [
 
-function toggleAuth(type) {
-    document.getElementById('loginForm').style.display = type === 'forgot' ? 'none' : 'block';
-    document.getElementById('forgotForm').style.display = type === 'forgot' ? 'block' : 'none';
-}
+  {
+    produto: "Caderno",
+    categoria: "Papelaria",
+    quantidade: 120
+  },
 
-// Lógica de Login
-function handleLogin() {
-    const user = document.getElementById('user').value;
-    const pass = document.getElementById('pass').value;
+  {
+    produto: "Canetas",
+    categoria: "Papelaria",
+    quantidade: 250
+  },
 
-    if(user === "negodi" && pass === "123456") {
-        alert("Olá " + user);
-        modal.style.display = "none";
-        loginBtn.innerText = "Olá, " + user;
-    } else {
-        alert("Dados incorretos!");
+  {
+    produto: "Tinta Impressora",
+    categoria: "Tecnologia",
+    quantidade: 4
+  },
+
+  {
+    produto: "Álcool Gel",
+    categoria: "Limpeza",
+    quantidade: 8
+  },
+
+  {
+    produto: "Mouse",
+    categoria: "Tecnologia",
+    quantidade: 18
+  }
+
+];
+
+// ELEMENTOS
+
+const tabela = document.getElementById("tabelaEstoque");
+
+const pesquisa = document.getElementById("pesquisa");
+
+const filtroCategoria = document.getElementById("filtroCategoria");
+
+const totalEstoque = document.getElementById("totalEstoque");
+
+const itensCriticos = document.getElementById("itensCriticos");
+
+const alertaEstoque = document.getElementById("alertaEstoque");
+
+// RENDERIZAR TABELA
+
+function renderizarTabela() {
+
+  tabela.innerHTML = "";
+
+  let filtroTexto = pesquisa.value.toLowerCase();
+
+  let categoriaSelecionada = filtroCategoria.value;
+
+  let total = 0;
+
+  let criticos = 0;
+
+  estoque.forEach(item => {
+
+    let nome = item.produto.toLowerCase();
+
+    let categoriaOK =
+      categoriaSelecionada === "" ||
+      item.categoria === categoriaSelecionada;
+
+    let pesquisaOK = nome.includes(filtroTexto);
+
+    if(categoriaOK && pesquisaOK){
+
+      total += item.quantidade;
+
+      let status = "";
+
+      if(item.quantidade <= 10){
+
+        status = "Crítico";
+
+        criticos++;
+
+      } else {
+
+        status = "Normal";
+
+      }
+
+      tabela.innerHTML += `
+        <tr>
+          <td>${item.produto}</td>
+          <td>${item.categoria}</td>
+          <td>${item.quantidade}</td>
+          <td class="${
+            item.quantidade <= 10
+              ? "low-stock"
+              : "ok-stock"
+          }">
+            ${status}
+          </td>
+        </tr>
+      `;
     }
+
+  });
+
+  totalEstoque.innerText = total;
+
+  itensCriticos.innerText = criticos;
+
+  alertaEstoque.innerText =
+    criticos > 0
+      ? `⚠ ${criticos} itens com estoque crítico`
+      : "✅ Estoque normal";
+
 }
 
-// Carrossel
-let currentSlide = 0;
-function moveSlide(n) {
-    const slides = document.querySelectorAll('.slide');
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
+// EVENTOS
+
+pesquisa.addEventListener("input", renderizarTabela);
+
+filtroCategoria.addEventListener("change", renderizarTabela);
+
+// LOGIN
+
+function login(){
+
+  alert("Login realizado com sucesso!");
+
 }
 
-// Contador Animado
-let count = 0;
-const target = 1500; // Exemplo de número de clientes
-const interval = setInterval(() => {
-    if(count < target) {
-        count += 10;
-        document.getElementById('clientCounter').innerText = count + "+";
-    } else {
-        clearInterval(interval);
-    }
-}, 30);
+// CADASTRO
+
+function cadastro(){
+
+  alert("Usuário cadastrado com sucesso!");
+
+}
+
+// INICIAR
+
+renderizarTabela();
